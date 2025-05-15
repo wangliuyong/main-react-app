@@ -9,6 +9,7 @@ type MenuItemType = {
   path?: string;
   icon?: React.ReactNode;
   children?: MenuItemType[];
+  props?: MenuItemType;
 };
 
 const App: React.FC = () => {
@@ -34,11 +35,11 @@ const App: React.FC = () => {
   }, [items]);
 
   useEffect(() => {
-    setItems(menuList as MenuItemType[]);
+    setItems(menuList.map((item) => ({ ...item, title: item.label })));
   }, []);
 
   const handleClickMenu = ({ item }: { item: MenuItemType }) => {
-    navigate(item.props.path);
+    navigate(item.props?.path || "/");
   };
 
   return (

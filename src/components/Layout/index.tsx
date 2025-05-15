@@ -5,7 +5,7 @@ import { Button, Layout, theme } from "antd";
 import Menu from "../Menu";
 const { Header, Sider, Content } = Layout;
 
-const App = ({ children }) => {
+const App: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const {
