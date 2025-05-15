@@ -15,8 +15,37 @@
   .menue-wrap {
     .collapsed-btn {
       position: absolute;
-      bottom: 8px;
+      bottom: 0;
       right: 0;
     }
   }
+}
+
+.demo-logo {
+  width: 120px;
+  min-width: 120px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  margin-inline-end: 24px;
+}
+
+.demo-logo-vertical {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+}
+
+.ant-layout-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 16px !important;
+  margin: 16px !important;
+}
+
+.sub-wrap {
+  flex: 1;
+  width: 100%;
 }
