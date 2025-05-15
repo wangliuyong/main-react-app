@@ -3,15 +3,23 @@ import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
 import { menuList } from "../../mock/menu";
 
+type MenuItemType = {
+  key: string;
+  title: string;
+  path?: string;
+  icon?: React.ReactNode;
+  children?: MenuItemType[];
+};
+
 const App: React.FC = () => {
   const navigate = useNavigate();
 
-  // 修改后（受控模式）
+  // 受控模式）
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<MenuItemType[]>([]);
 
-  const getDefaultSelectedKeys = (menus: any[]) => {
+  const getDefaultSelectedKeys = (menus: MenuItemType[]) => {
     if (menus.length) {
       console.log(`menus`, menus);
       const find = menus.find((item) => item.path === location.pathname);
@@ -26,10 +34,10 @@ const App: React.FC = () => {
   }, [items]);
 
   useEffect(() => {
-    setItems(menuList);
+    setItems(menuList as MenuItemType[]);
   }, []);
 
-  const handleClickMenu = ({ item }) => {
+  const handleClickMenu = ({ item }: { item: MenuItemType }) => {
     navigate(item.props.path);
   };
 
