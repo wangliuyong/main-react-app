@@ -11,7 +11,14 @@ export const menuList = [
     key: "4",
     icon: <PieChartOutlined />,
     label: "三维可视化",
-    path: "/3d/three",
+    children: [
+      {
+        key: "4",
+        icon: <PieChartOutlined />,
+        label: "three.js",
+        path: "/3d/three",
+      },
+    ],
   },
   {
     key: "3",

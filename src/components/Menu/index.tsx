@@ -12,18 +12,37 @@ type MenuItemType = {
   props?: MenuItemType;
 };
 
+function findMenuByPath(
+  menuList: MenuItemType[],
+  targetPath: string
+): MenuItemType | undefined {
+  for (const menu of menuList) {
+    // 匹配当前节点
+    if (menu.path === targetPath) return menu;
+
+    // 递归搜索子节点
+    if (menu.children?.length) {
+      const found = findMenuByPath(menu.children, targetPath);
+      if (found) return found;
+    }
+  }
+  return undefined;
+}
+
 const App: React.FC = () => {
   const navigate = useNavigate();
 
   // 受控模式）
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+  const [openKeys, setOpenKeys] = useState<string[]>([]);
 
   const [items, setItems] = useState<MenuItemType[]>([]);
 
   const getDefaultSelectedKeys = (menus: MenuItemType[]) => {
     if (menus.length) {
-      const find = menus.find((item) => item.path === location.pathname);
+      const find = findMenuByPath(menus, window.location.pathname);
       if (find) {
+        setOpenKeys([find.key]);
         setSelectedKeys([find.key]);
       }
     }
@@ -35,7 +54,16 @@ const App: React.FC = () => {
 
   useEffect(() => {
     console.log("菜单初始化");
-    setItems(menuList.map((item) => ({ ...item, title: item.label })));
+    setItems(
+      menuList.map((item) => ({
+        ...item,
+        title: item.label,
+        children: item.children?.map((child) => ({
+          ...child,
+          title: child.label,
+        })),
+      }))
+    );
   }, []);
 
   const handleClickMenu = ({ item }: { item: MenuItemType }) => {
@@ -47,7 +75,9 @@ const App: React.FC = () => {
       theme="dark"
       mode="inline"
       selectedKeys={selectedKeys}
+      openKeys={openKeys}
       onSelect={({ key }) => setSelectedKeys([key])}
+      onOpenChange={(keys: string[]) => setOpenKeys(keys)}
       items={items}
       onClick={handleClickMenu}
     />
