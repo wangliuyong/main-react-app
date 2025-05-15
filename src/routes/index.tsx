@@ -24,7 +24,7 @@ const routes = [
 
   {
     path: "/3d",
-    element: <Layout />,
+    element: <Layout children={undefined} />,
     children: [
       {
         path: "three",
