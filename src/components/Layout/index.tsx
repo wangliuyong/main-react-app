@@ -5,7 +5,7 @@ import { Button, Layout, theme } from "antd";
 import Menu from "../Menu";
 const { Header, Sider, Content } = Layout;
 
-const App: React.FC = () => {
+const App = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const {
@@ -40,9 +40,7 @@ const App: React.FC = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          <div className="sub-wrap" id="sub-vue-app">
-            loading...
-          </div>
+          {children}
         </Content>
       </Layout>
     </Layout>
