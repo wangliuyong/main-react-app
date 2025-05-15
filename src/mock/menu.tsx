@@ -13,4 +13,10 @@ export const menuList = [
     label: "微应用VUE3",
     path: "/sub-vue-app",
   },
+  {
+    key: "4",
+    icon: <PieChartOutlined />,
+    label: "三维可视化",
+    path: "/three",
+  },
 ];
