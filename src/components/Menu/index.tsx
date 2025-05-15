@@ -34,6 +34,7 @@ const App: React.FC = () => {
   }, [items]);
 
   useEffect(() => {
+    console.log("菜单初始化");
     setItems(menuList.map((item) => ({ ...item, title: item.label })));
   }, []);
 

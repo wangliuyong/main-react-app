@@ -1,4 +1,5 @@
 import { lazy } from "react";
+// 微应用容器不能使用懒加载
 import SubAppContainer from "../pages/SubAppContainer";
 import Layout from "../components/Layout";
 
