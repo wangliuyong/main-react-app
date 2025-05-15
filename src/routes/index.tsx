@@ -3,8 +3,8 @@ import { lazy } from "react";
 import SubAppContainer from "../pages/SubAppContainer";
 import Layout from "../components/Layout";
 
-const Login = lazy(() => import("../pages/Login"));
-const Home = lazy(() => import("../pages/Home"));
+const Login = lazy(() => import("../pages/login"));
+const Home = lazy(() => import("../pages/home"));
 const Three = lazy(() => import("../pages/3d/three"));
 
 const routes = [
