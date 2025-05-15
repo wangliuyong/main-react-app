@@ -1,23 +1,15 @@
-import { useState } from "react";
-
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import Login from "./pages/Login";
+import SubAppContainer from "./pages/SubAppContainer";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div className="header">react-header</div>
-      <div className="content">
-        <a href="/sub-vue-app" target="">
-          {" "}
-          跳转子应用sub-vue-app{" "}
-        </a>
-
-        <div className="sub-wrap" id="sub-vue-app">
-          vue
-        </div>
-      </div>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/sub-vue-app" element={<SubAppContainer />} />
+      </Routes>
     </>
   );
 }
