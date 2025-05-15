@@ -22,7 +22,6 @@ const App: React.FC = () => {
 
   const getDefaultSelectedKeys = (menus: MenuItemType[]) => {
     if (menus.length) {
-      console.log(`menus`, menus);
       const find = menus.find((item) => item.path === location.pathname);
       if (find) {
         setSelectedKeys([find.key]);

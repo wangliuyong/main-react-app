@@ -2,6 +2,7 @@ import "./index.scss";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import { Button, Layout, theme } from "antd";
+import { Outlet } from "react-router-dom";
 import Menu from "../Menu";
 const { Header, Sider, Content } = Layout;
 
@@ -41,6 +42,7 @@ const App: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           }}
         >
           {children}
+          <Outlet />
         </Content>
       </Layout>
     </Layout>
