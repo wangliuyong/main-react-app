@@ -1,17 +1,10 @@
-import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Login from "./pages/Login";
-import SubAppContainer from "./pages/SubAppContainer";
+import { useRoutes } from "react-router-dom";
+import routes from "./routes/index";
 
 function App() {
-  return (
-    <>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/sub-vue-app" element={<SubAppContainer />} />
-      </Routes>
-    </>
-  );
+  const routing = useRoutes(routes);
+  return routing;
 }
 
 export default App;
