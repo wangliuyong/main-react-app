@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <div className="header">header</div>
+      <div className="header">react-header</div>
       <div className="content">
         <a href="/sub-vue-app" target="">
           {" "}
