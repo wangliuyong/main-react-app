@@ -1,6 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import "@ant-design/v5-patch-for-react-19";
+
 import "./index.css";
 import App from "./App.tsx";
 
@@ -31,8 +33,8 @@ registerMicroApps(
     },
   ],
   {
-    beforeLoad: (app) => console.log("Loading", app.name),
-    afterMount: (app) => console.log("Mounted", app.name),
+    // beforeLoad: (app) => console.log("Loading", app.name),
+    // afterMount: (app) => console.log("Mounted", app.name),
   }
 );
 
