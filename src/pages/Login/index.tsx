@@ -1,9 +1,11 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input, message } from "antd";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./index.scss";
 
 export default function LoginForm() {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
@@ -14,6 +16,7 @@ export default function LoginForm() {
       // 调用登录接口
       // await loginService(values);
       message.success("登录成功");
+      navigate("/sub-vue-app", {});
     } catch (error) {
       message.error("登录失败");
     } finally {
