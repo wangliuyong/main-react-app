@@ -7,7 +7,7 @@ const App: React.FC = () => {
   const navigate = useNavigate();
 
   // 修改后（受控模式）
-  const [selectedKeys, setSelectedKeys] = useState<string[]>(["1"]);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
   const [items, setItems] = useState<any[]>([]);
 
