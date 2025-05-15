@@ -9,7 +9,11 @@ const Three = lazy(() => import("../pages/3d/three"));
 const routes = [
   {
     path: "/sub-vue-app",
-    element: <SubAppContainer />,
+    element: (
+      <Layout>
+        <SubAppContainer />
+      </Layout>
+    ),
   },
   {
     path: "/login",
@@ -18,7 +22,11 @@ const routes = [
   },
   {
     path: "/home",
-    element: <Home />,
+    element: (
+      <Layout>
+        <Home />
+      </Layout>
+    ),
     meta: { title: "首页", requiresAuth: false },
   },
 
