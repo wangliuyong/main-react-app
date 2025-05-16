@@ -19,7 +19,7 @@ function findMenuByPath(
 ): MenuItemType | undefined {
   for (const menu of menuList) {
     // 匹配当前节点
-    if (menu.path === targetPath) return menu;
+    if (targetPath.includes(menu.path as string)) return menu;
 
     // 递归搜索子节点
     if (menu.children?.length) {

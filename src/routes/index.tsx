@@ -10,16 +10,23 @@ const Home = lazy(() => import("../pages/home"));
 const Three = lazy(() => import("../pages/3d/three"));
 
 const routes = [
-  ...apps.map((item) => {
-    return {
-      path: item.activeRule,
-      element: (
-        <Layout>
-          <SubAppContainer />
-        </Layout>
-      ),
-    };
-  }),
+  {
+    path: "/micro",
+    element: <Layout children={undefined}></Layout>,
+    children: apps.map((item) => {
+      return {
+        path: item.activeRule,
+        element: <SubAppContainer />,
+        meta: { title: item.name, requiresAuth: true },
+        children: [
+          {
+            path: "*",
+          },
+        ],
+      };
+    }),
+  },
+
   {
     path: "/login",
     element: <Login />,
