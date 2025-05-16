@@ -3,19 +3,23 @@ import { lazy } from "react";
 import SubAppContainer from "../pages/SubAppContainer";
 import Layout from "../components/Layout";
 
+import { apps } from "../micro/app.ts";
+
 const Login = lazy(() => import("../pages/login"));
 const Home = lazy(() => import("../pages/home"));
 const Three = lazy(() => import("../pages/3d/three"));
 
 const routes = [
-  {
-    path: "/sub-vue-app",
-    element: (
-      <Layout>
-        <SubAppContainer />
-      </Layout>
-    ),
-  },
+  ...apps.map((item) => {
+    return {
+      path: item.activeRule,
+      element: (
+        <Layout>
+          <SubAppContainer />
+        </Layout>
+      ),
+    };
+  }),
   {
     path: "/login",
     element: <Login />,

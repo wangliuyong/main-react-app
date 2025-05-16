@@ -10,6 +10,7 @@ type MenuItemType = {
   icon?: React.ReactNode;
   children?: MenuItemType[];
   props?: MenuItemType;
+  parentKey: string;
 };
 
 function findMenuByPath(
@@ -42,7 +43,7 @@ const App: React.FC = () => {
     if (menus.length) {
       const find = findMenuByPath(menus, window.location.pathname);
       if (find) {
-        setOpenKeys([find.key]);
+        setOpenKeys([find.parentKey]);
         setSelectedKeys([find.key]);
       }
     }
