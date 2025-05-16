@@ -16,11 +16,12 @@ registerMicroApps(apps, {
 });
 
 start({
-  sandbox: {
-    experimentalStyleIsolation: true, // 样式隔离
-    strictStyleIsolation: true, // Shadow DOM隔离
-  },
+  // sandbox: {
+  //   experimentalStyleIsolation: false, // 样式隔离
+  //   strictStyleIsolation: false, // Shadow DOM隔离
+  // },
   prefetch: false,
+  sandbox: false,
 });
 
 createRoot(document.getElementById("root")!).render(
