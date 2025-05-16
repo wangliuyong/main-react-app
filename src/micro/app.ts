@@ -12,7 +12,7 @@ export const apps = [
   {
     name: "sub-react-app",
     entry: "//localhost:7200", // 子应用服务地址
-    container: "#sub-react-app",
+    container: "#sub-app",
     activeRule: "/sub-react-app", // 激活路径
     props: {
       baseRouter: "/sub-react-app",
