@@ -14,7 +14,7 @@ registerMicroApps(
     {
       name: "sub-vue-app",
       entry: "//localhost:7100", // 子应用服务地址
-      container: "#sub-vue-app",
+      container: "#sub-app",
       activeRule: "/sub-vue-app", // 激活路径
       props: {
         baseRouter: "/sub-vue-app",
