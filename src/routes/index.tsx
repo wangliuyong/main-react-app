@@ -7,7 +7,8 @@ import { apps } from "../micro/app.ts";
 
 const Login = lazy(() => import("../pages/login"));
 const Home = lazy(() => import("../pages/home"));
-const Three = lazy(() => import("../pages/3d/three"));
+const Three = lazy(() => import("../pages/3d/three/day1/index.tsx"));
+const Three2 = lazy(() => import("../pages/3d/three/day2/index.tsx"));
 
 const routes = [
   {
@@ -49,6 +50,11 @@ const routes = [
       {
         path: "three",
         element: <Three />,
+        meta: { title: "three.js", requiresAuth: false },
+      },
+      {
+        path: "three2",
+        element: <Three2 />,
         meta: { title: "three.js", requiresAuth: false },
       },
     ],

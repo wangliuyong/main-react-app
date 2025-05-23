@@ -10,56 +10,71 @@ export default function App() {
     if (domContainer) {
       // 创建场景
       const scene = new THREE.Scene();
+
       // 创建照相机
       const camera = new THREE.PerspectiveCamera(
         45,
         domContainer.clientWidth / domContainer.clientHeight,
-        0.1,
-        100
+        1,
+        3000
       );
-      // 设置摄像机位置
-      camera.position.set(-30, 40, 30);
+
+      const initCamera = () => {
+        // 设置摄像机位置
+        camera.position.set(32, 32, 32);
+        camera.lookAt(0, 0, 0);
+      };
 
       // 光源
-      function point() {
+      function initLight() {
+        // 点光源
         const point = new THREE.DirectionalLight(0xffffff);
         point.position.set(80, 100, 80);
         scene.add(point);
+
+        // 环境光
+        const light = new THREE.AmbientLight(0xffffff, 0.1);
+        light.position.set(0, 0, 0);
+        scene.add(light);
       }
 
-      // 立方体
-      function cube() {
-        // 添加几何体
-        const cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
-        const cubeMaterial = new THREE.MeshStandardMaterial({
+      // 生成网格并添加到场景中
+      function initMesh() {
+        // 立方体几何体
+        const geometry = new THREE.BoxGeometry(16, 16, 16);
+        // 标准材质
+        const material = new THREE.MeshStandardMaterial({
           color: 0xff0000,
         });
-        const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-        cube.position.set(2, 2, 2);
-        scene.add(cube);
+        // 网格
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(0, 0, 0);
+        scene.add(mesh);
       }
 
-      cube();
-      point();
+      // 坐标系
+      const initAxios = () => {
+        // 添加坐标系
+        const axes = new THREE.AxesHelper(200);
+        scene.add(axes);
+      };
 
-      // 环境光
-      const light = new THREE.AmbientLight(0xffffff, 0.1);
-      light.position.set(0, 0, 0);
-      scene.add(light);
-
-      // 添加坐标系
-      const axes = new THREE.AxesHelper(20);
-      scene.add(axes);
+      initMesh();
+      initLight();
+      initCamera();
+      initAxios();
 
       const render = () => {
         renderer.render(scene, camera);
       };
+
       const controls = new OrbitControls(camera, renderer.domElement); //创建控件对象
       controls.addEventListener("change", render);
-      domContainer.appendChild(renderer.domElement);
 
       renderer.setSize(domContainer.clientWidth, domContainer.clientHeight);
-      render();
+      renderer.render(scene, camera);
+
+      domContainer.appendChild(renderer.domElement);
     }
   };
   useEffect(() => {
