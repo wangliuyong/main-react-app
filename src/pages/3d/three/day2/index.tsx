@@ -2,12 +2,17 @@ import "./index.scss";
 import { useEffect } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+// 性能监视器
+import Stats from "three/examples/jsm/libs/stats.module.js";
+
+const stats = new Stats();
 
 export default function App() {
   const renderer = new THREE.WebGLRenderer();
 
   const initThree = () => {
     const domContainer = document.getElementById("three-container");
+    const statsContainer = document.getElementById("stats-container");
     if (domContainer) {
       // 创建场景
       const scene = new THREE.Scene();
@@ -33,6 +38,7 @@ export default function App() {
       scene.add(mesh);
 
       const render = () => {
+        stats.update();
         renderer.render(scene, camera);
       };
 
@@ -104,6 +110,7 @@ export default function App() {
       renderer.setSize(domContainer.clientWidth, domContainer.clientHeight);
       renderer.render(scene, camera);
 
+      statsContainer?.appendChild(stats.domElement);
       domContainer.appendChild(renderer.domElement);
     }
   };
@@ -126,6 +133,7 @@ export default function App() {
   return (
     <>
       <div id="three-container"></div>
+      <div id="stats-container"></div>
     </>
   );
 }

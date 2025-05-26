@@ -1,3 +1,9 @@
 #three-container {
   flex: 1;
 }
+
+#stats-container {
+  & > div {
+    left: 258px !important;
+  }
+}
