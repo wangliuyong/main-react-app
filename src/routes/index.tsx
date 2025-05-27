@@ -9,6 +9,7 @@ const Login = lazy(() => import("../pages/login"));
 const Home = lazy(() => import("../pages/home"));
 const Three = lazy(() => import("../pages/3d/three/day1/index.tsx"));
 const Three2 = lazy(() => import("../pages/3d/three/day2/index.tsx"));
+const Factory = lazy(() => import("../pages/3d/three/factory/index.tsx"));
 
 const routes = [
   {
@@ -56,6 +57,11 @@ const routes = [
         path: "three2",
         element: <Three2 />,
         meta: { title: "three.js", requiresAuth: false },
+      },
+      {
+        path: "factory",
+        element: <Factory />,
+        meta: { title: "Factory", requiresAuth: false },
       },
     ],
   },
