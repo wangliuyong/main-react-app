@@ -9,6 +9,8 @@ const stats = new Stats();
 
 export default function App() {
   const renderer = new THREE.WebGLRenderer();
+  // 设置像素比，以获得更好的渲染效果
+  renderer.setPixelRatio(window.devicePixelRatio);
 
   const initThree = () => {
     const domContainer = document.getElementById("three-container");
@@ -32,10 +34,6 @@ export default function App() {
       const material = new THREE.MeshLambertMaterial({
         color: 0xff0000,
       });
-      // 网格
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.set(10, 0, 0);
-      scene.add(mesh);
 
       const render = () => {
         stats.update();
@@ -44,7 +42,7 @@ export default function App() {
 
       const initCamera = () => {
         // 设置摄像机位置
-        camera.position.set(-32, 32, 32);
+        camera.position.set(-300, 300, 300);
         camera.lookAt(0, 0, 0);
       };
 
@@ -91,7 +89,7 @@ export default function App() {
       };
 
       // 旋转动画
-      const initRoate = () => {
+      const initRoate = (mesh) => {
         // 旋转
         const animate = () => {
           mesh.rotateY(0.1);
@@ -101,11 +99,23 @@ export default function App() {
         animate();
       };
 
+      // 网格
+      const generateMesh = (num = 10) => {
+        for (let index = 0; index < num; index++) {
+          const mesh = new THREE.Mesh(geometry, material);
+          mesh.position.set(index * 17, 0, 0);
+          scene.add(mesh);
+          initRoate(mesh);
+        }
+      };
+
+      generateMesh(20);
+
       initLight();
       initCamera();
       initAxios();
       initCameraControl();
-      initRoate();
+      // initRoate();
 
       renderer.setSize(domContainer.clientWidth, domContainer.clientHeight);
       renderer.render(scene, camera);
@@ -117,6 +127,7 @@ export default function App() {
 
   useEffect(() => {
     initThree();
+
     return () => {
       const domContainer = document.getElementById("three-container");
       // 组件卸载时清理
