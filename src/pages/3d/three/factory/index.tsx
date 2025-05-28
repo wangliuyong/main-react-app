@@ -92,6 +92,12 @@ export default function App() {
           intersects[0].object.material.color.set(0xff0000);
         }
       });
+
+      window.addEventListener("resize", () => {
+        renderer.setSize(domContainer.clientWidth, domContainer.clientHeight);
+        camera.aspect = domContainer.clientWidth / domContainer.clientHeight;
+        camera.updateProjectionMatrix();
+      });
     }
 
     return { domContainer };
@@ -103,10 +109,6 @@ export default function App() {
       domContainer?.removeChild(renderer.domElement);
     };
   }, []);
-
-  window.addEventListener("resize", () => {
-    initThree();
-  });
 
   //创建一个射线投射器`Raycaster`
 
