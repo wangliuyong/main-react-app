@@ -4,6 +4,7 @@ import SubAppContainer from "../pages/SubAppContainer";
 import Layout from "../components/Layout";
 
 import { apps } from "../micro/app.ts";
+import { Navigate } from "react-router-dom";
 
 const Login = lazy(() => import("../pages/login"));
 const Home = lazy(() => import("../pages/home"));
@@ -64,6 +65,10 @@ const routes = [
         meta: { title: "Factory", requiresAuth: false },
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Navigate to="/home" replace />,
   },
 ];
 
