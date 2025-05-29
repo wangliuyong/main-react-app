@@ -5,17 +5,17 @@ import {
 } from "@ant-design/icons";
 
 export const menuList = [
-  {
-    key: "1",
-    parentKey: "0",
-    icon: <DesktopOutlined />,
-    label: "登录页",
-    path: "/login",
-  },
+  // {
+  //   key: "1",
+  //   parentKey: "0",
+  //   icon: <DesktopOutlined />,
+  //   label: "登录页",
+  //   path: "/login",
+  // },
   {
     key: "2",
     parentKey: "0",
-    icon: <PieChartOutlined />,
+    icon: <DesktopOutlined />,
     label: "首页",
     path: "/home",
   },
@@ -31,6 +31,13 @@ export const menuList = [
         icon: <PieChartOutlined />,
         label: "three.js",
         path: "/3d/three",
+      },
+      {
+        key: "3.2",
+        parentKey: "3",
+        icon: <PieChartOutlined />,
+        label: "工厂案列",
+        path: "/3d/factory",
       },
     ],
   },
