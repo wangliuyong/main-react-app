@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
+import type { MenuProps } from "antd";
 import { menuList } from "../../mock/menu";
 
 type MenuItemType = {
@@ -67,8 +68,23 @@ const App: React.FC = () => {
     );
   }, []);
 
-  const handleClickMenu = ({ item }: { item: MenuItemType }) => {
-    navigate(item.props?.path || "/");
+  const handleClickMenu: MenuProps["onClick"] = (info) => {
+    // Try to find the clicked menu item in the items array by key
+    const findMenu = (
+      menus: MenuItemType[],
+      key: string
+    ): MenuItemType | undefined => {
+      for (const menu of menus) {
+        if (menu.key === key) return menu;
+        if (menu.children) {
+          const found = findMenu(menu.children, key);
+          if (found) return found;
+        }
+      }
+      return undefined;
+    };
+    const menuItem = findMenu(items, info.key as string);
+    navigate(menuItem?.path || "/");
   };
 
   return (
